@@ -13,7 +13,12 @@ export const componentConsts = names.map((name, index) => {
             '25': Number(constsTable[index][21].replace(',', '.')),
         },
         b: Number(constsTable[index][6].replace(',', '.')),
-        s0C: Number(constsTable[index][11].replace(',', '.')),
+        s: {
+            '0': Number(constsTable[index][11].replace(',', '.')),
+            '15': Number(constsTable[index][12].replace(',', '.')),
+            '15.55': Number(constsTable[index][13].replace(',', '.')),
+            '20': Number(constsTable[index][14].replace(',', '.')),
+        }
     }
 });
 

@@ -8,6 +8,28 @@
     <script type="module" src="/main.js" defer></script>
   </head>
   <body>
-    <div id="app"></div>
+    <header>
+      <label for="combustuion-t">Температура згоряння</label>
+      <select name="combustuion-t" id="combustuion-t">
+        <option value="0">0</option>
+        <option value="15">15</option>
+        <option value="15.55">15,55</option>
+        <option value="20">20</option>
+        <option value="25">25</option>
+      </select>
+      <label for="metering-t">Температура вимірювання</label>
+      <select name="metering-t" id="metering-t">
+        <option value="0">0</option>
+        <option value="15">15</option>
+        <option value="15.55">15,55</option>
+        <option value="20">20</option>
+      </select>
+    </header>
+    <main>
+       <table class="report">
+        <tbody id="report-body">
+        </tbody>
+       </table>
+    </main>
   </body>
 </html>
