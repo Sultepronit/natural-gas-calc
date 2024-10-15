@@ -1,3 +1,5 @@
+import { temperatures } from "./main"; // just to prevent reloading
+
 const components = [
     "methane",
     "ethane",

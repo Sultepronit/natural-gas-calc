@@ -1,12 +1,20 @@
-import { Hc0C } from "./Hc0C";
-import { Ms } from "./Ms";
+import { constsTable } from "./constsTable";
 import { names } from "./names";
 
 export const componentConsts = names.map((name, index) => {
-    // console.log(index, name);
     return {
         name,
-        M: Ms[index],
-        Hc0C: Hc0C[index]
+        M: Number(constsTable[index][3].replace(',', '.')),
+        Hc_G: {
+            '0': Number(constsTable[index][17].replace(',', '.')),
+            '15': Number(constsTable[index][18].replace(',', '.')),
+            '15.55': Number(constsTable[index][19].replace(',', '.')),
+            '20': Number(constsTable[index][20].replace(',', '.')),
+            '25': Number(constsTable[index][21].replace(',', '.')),
+        },
+        b: Number(constsTable[index][6].replace(',', '.')),
+        s0C: Number(constsTable[index][11].replace(',', '.')),
     }
 });
+
+console.log(componentConsts);
