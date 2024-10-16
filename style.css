@@ -13,4 +13,21 @@ td {
 
 table {
     border-collapse: collapse;
+    margin: 0.5rem;
+}
+
+.init-data {
+    float: left;
+}
+
+.corrected-data {
+    float: left;
+}
+
+hr {
+    clear: both;
+}
+
+.report {
+    float: left;
 }

@@ -1,9 +1,10 @@
 import { basicConsts } from "../basicConsts";
 import { toKelvin } from "../helpers";
+import gatherConsts from "./gatherConts";
 
 class GasData {
-    constructor(components, combustionT, meteringT) {
-        this.components = components;
+    constructor(inputComponents, combustionT, meteringT) {
+        this.components = gatherConsts(inputComponents);
         this.combustionT = combustionT;
         this.meteringT = meteringT;
     }
@@ -27,7 +28,6 @@ class GasData {
         return this.Hc_N / this.M;
     };
     get s() {
-        // return this.components.reduce((acc, current) => acc + (current.value * current.s0C), 0);
         return this.components.reduce((acc, current) => {
             return acc + (current.value * current.s[this.meteringT]);
         }, 0);

@@ -11,25 +11,53 @@
     <header>
       <label for="combustuion-t">Температура згоряння</label>
       <select name="combustuion-t" id="combustuion-t">
-        <option value="0">0</option>
-        <option value="15">15</option>
-        <option value="15.55">15,55</option>
-        <option value="20">20</option>
-        <option value="25">25</option>
+        <option value="0">0 °С</option>
+        <option value="15">15 °С</option>
+        <option value="15.55">60 °F</option>
+        <option value="20">20 °С</option>
+        <option value="25">25 °С</option>
       </select>
       <label for="metering-t">Температура вимірювання</label>
       <select name="metering-t" id="metering-t">
-        <option value="0">0</option>
-        <option value="15">15</option>
-        <option value="15.55">15,55</option>
-        <option value="20">20</option>
+        <option value="0">0 °С</option>
+        <option value="15">15 °С</option>
+        <option value="15.55">60 °F</option>
+        <option value="20">20 °С</option>
       </select>
     </header>
     <main>
+      <p>
+        Точка роси: 6.7 °С, при тиску 3.92 МПа<br>
+        Вміст води: 190.62 мг/м<sup>3</sup>
+      </p>
+
+      <table class="init-data">
+        <caption>Склад газу</caption>
+        <tbody id="init-data-body">
+        </tbody>
+       </table>
+
+       <table class="corrected-data">
+        <caption>Доповнений склад газу</caption>
+        <tbody id="corrected-data-body">
+        </tbody>
+       </table>
+
+       <hr>
+
        <table class="report">
+        <caption>Результати</caption>
         <tbody id="report-body">
         </tbody>
        </table>
+
+       <table class="report">
+        <caption>Результати (вологий газ)</caption>
+        <tbody id="wet-report-body">
+        </tbody>
+       </table>
+
+       <p id="add-display"></p>
     </main>
   </body>
 </html>
