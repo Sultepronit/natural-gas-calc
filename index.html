@@ -2,13 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/gas.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Natural Gas Calc</title>
     <script type="module" src="/main.js" defer></script>
   </head>
   <body>
     <header>
+      <p class="version">Natural Gas Calc v0.0.1</p>
       <label for="combustuion-t">Температура згоряння</label>
       <select name="combustuion-t" id="combustuion-t">
         <option value="0">0 °С</option>
@@ -27,9 +28,11 @@
     </header>
     <main>
       <p>
-        Точка роси: 6.7 °С, при тиску 3.92 МПа<br>
-        Вміст води: 190.62 мг/м<sup>3</sup>
+        Точка роси, при тиску 3.92 МПа: 
+        <input type="text" name="dew-point" id="dew-point">
+        °С
       </p>
+      <p>Вміст води: <span id="water-content"></span> мг/м<sup>3</sup></p>
 
       <div class="main-input">
         <table>

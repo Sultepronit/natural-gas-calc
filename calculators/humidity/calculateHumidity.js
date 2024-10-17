@@ -20,13 +20,17 @@ function calculateWaterContent(tableData, p) {
     let w = 1 / tableData.k;
     if (tableData.ice) w = w * tableData.water / tableData.ice;
 
-    return w * 1_000_000 * 14.7 / p * (460 + tableData.dewPoint) / (460 + 60);
+    return w * 1_000_000 * 14.7 / p * (460 + tableData.dewPoint) / (460 + 60) * 16.0185;
 }
 
 export default function calculateHumidity(tc) {
-    const p = 14.4;
-    // const tf = tc * 1.8 + 32;
-    const tf = tc;
+    // const p = 14.4;
+    const p = 568.55;
+    tc = (isNaN(tc) || tc === '') ? -100 : Number(tc);
+    console.log(tc);
+    let tf = tc * 1.8 + 32;
+    // tf = tc;
+    if (tf < -1) tf = -1;
     console.log(tc, tf)
 
     const tableData = findTableData(tf);

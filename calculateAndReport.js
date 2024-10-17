@@ -1,10 +1,14 @@
 import GasData from "./calculators/gasData";
+import calculateHumidity from "./calculators/humidity/calculateHumidity";
 import { inputData } from "./mainInput";
 import writeInitTable, { writeCorrectedTable } from "./writeInitTable";
 import writeReport, { writeWetReport } from "./writeReport";
 
 const combustionTSelect = document.getElementById('combustuion-t');
 const meteringTSelect = document.getElementById('metering-t');
+
+const dewPoint = document.getElementById('dew-point');
+const waterContent = document.getElementById('water-content');
 
 const totalControl = document.getElementById('total-control');
 
@@ -19,8 +23,12 @@ export default function calculateAndReport() {
     console.log(gasData);
     writeReport(gasData);
 
-    const addWaterMV = 190.6183;
-    const addWaterNV = addWaterMV / 18 / 1000;
+    const humidity = calculateHumidity(dewPoint.value);
+    console.log(humidity);
+    waterContent.innerText = (humidity < 28 ? '< ' : '') + Math.round(humidity);
+
+    // const addWaterMV = 190.6183;
+    const addWaterNV = humidity / 18 / 1000;
 
     const dryGasData = new GasData(components, '15.55', '15.55');
     const gasN = dryGasData.D * 1000 / dryGasData.M;
@@ -45,3 +53,4 @@ export default function calculateAndReport() {
 
 combustionTSelect.addEventListener('input', calculateAndReport);
 meteringTSelect.addEventListener('input', calculateAndReport);
+dewPoint.addEventListener('input', calculateAndReport);

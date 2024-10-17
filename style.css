@@ -6,6 +6,7 @@
 }
 
 body {
+    margin: 0.2rem;
     font-size: 1.2rem;
 }
 
@@ -22,6 +23,16 @@ td {
 table {
     border-collapse: collapse;
     margin-inline: 0.5rem;
+}
+
+.version {
+    /* text-align: right; */
+    float: right;
+    font-size: 1rem;
+}
+
+#dew-point {
+    width: 3em;
 }
 
 .main-input {
