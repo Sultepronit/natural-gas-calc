@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Natural Gas Calc</title>
     <script type="module" src="/main.js" defer></script>
   </head>
   <body>
@@ -15,14 +15,14 @@
         <option value="15">15 °С</option>
         <option value="15.55">60 °F</option>
         <option value="20">20 °С</option>
-        <option value="25">25 °С</option>
+        <option value="25" selected>25 °С</option>
       </select>
       <label for="metering-t">Температура вимірювання</label>
       <select name="metering-t" id="metering-t">
         <option value="0">0 °С</option>
         <option value="15">15 °С</option>
         <option value="15.55">60 °F</option>
-        <option value="20">20 °С</option>
+        <option value="20" selected>20 °С</option>
       </select>
     </header>
     <main>
@@ -31,31 +31,40 @@
         Вміст води: 190.62 мг/м<sup>3</sup>
       </p>
 
-      <table class="init-data">
+      <div class="main-input">
+        <table>
+          <caption>Склад газу</caption>
+          <tbody id="main-input-body">
+          </tbody>
+        </table>
+        <p id="total-control">*</p>
+      </div>
+
+      <!-- <table class="init-data">
         <caption>Склад газу</caption>
         <tbody id="init-data-body">
         </tbody>
-       </table>
+      </table> -->
 
-       <table class="corrected-data">
+      <table class="corrected-data">
         <caption>Доповнений склад газу</caption>
         <tbody id="corrected-data-body">
         </tbody>
-       </table>
+      </table>
 
-       <hr>
+      <div class="space"></div>
 
-       <table class="report">
+      <table class="report">
         <caption>Результати</caption>
         <tbody id="report-body">
         </tbody>
-       </table>
+      </table>
 
-       <table class="report">
+      <table class="report">
         <caption>Результати (вологий газ)</caption>
         <tbody id="wet-report-body">
         </tbody>
-       </table>
+      </table>
 
        <p id="add-display"></p>
     </main>

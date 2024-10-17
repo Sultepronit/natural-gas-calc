@@ -1,9 +1,17 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+}
+
 body {
     font-size: 1.2rem;
 }
 
-select {
+select, input {
     font-size: inherit;
+    font-style: italic;
 }
 
 td {
@@ -13,19 +21,39 @@ td {
 
 table {
     border-collapse: collapse;
-    margin: 0.5rem;
+    margin-inline: 0.5rem;
 }
 
-.init-data {
+.main-input {
+    width: fit-content;
+}
+
+#total-control {
+    text-align: right;
+    padding-inline: 1em;
+}
+
+.td-input {
+    padding: 0, 0.4em;
+}
+
+.table-input {
+    border: none;
+    width: 6em;
+}
+
+/* .init-data {
+    float: left;
+} */
+
+.main-input, .corrected-data {
     float: left;
 }
 
-.corrected-data {
-    float: left;
-}
-
-hr {
+.space {
     clear: both;
+    margin: 0.4rem;
+    padding: 0.4rem;
 }
 
 .report {
