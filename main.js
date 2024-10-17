@@ -21,4 +21,15 @@ calculateAndReport();
 
 console.log(table);
 
+console.log(calculateHumidity(-40));
+
+console.log(calculateHumidity(-0.1));
+console.log(calculateHumidity(0));
+console.log(calculateHumidity(0.1));
 console.log(calculateHumidity(6.7));
+
+console.log(calculateHumidity(40));
+
+console.log(calculateHumidity(99));
+console.log(calculateHumidity(100));
+console.log(calculateHumidity(101));

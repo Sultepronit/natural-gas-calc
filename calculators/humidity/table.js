@@ -1,5 +1,6 @@
 const temperature = [
     0,
+    1,
     5,
     10,
     20,
@@ -23,11 +24,13 @@ const temperature = [
     70,
     80,
     90,
+    99,
     100,
 ];
 
 const k = [
     14810,
+    14080,
     11550,
     9060,
     5662,
@@ -51,11 +54,13 @@ const k = [
     867.44,
     632.68,
     467.66,
+    360.15,
     350.06,
 ];
 
 const water = [
     1.139,
+    1.195,
     1.436,
     1.807,
     2.785,
@@ -65,6 +70,7 @@ const water = [
 
 const ice = [
     0.958,
+    1.01,
     1.241,
     1.599,
     2.61,
@@ -74,7 +80,7 @@ const ice = [
 
 export const table = temperature.map((temperature, index) => {
     return {
-        temperature,
+        dewPoint: temperature,
         k: k[index],
         ...(water[index] ? { water: water[index] } : null),
         ...(ice[index] ? { ice: ice[index] } : null)
