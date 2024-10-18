@@ -9,7 +9,7 @@
   </head>
   <body>
     <header>
-      <p class="version">Natural Gas Calc v0.0.1</p>
+      <p class="version">Natural Gas Calc v0.0.2</p>
       <label for="combustuion-t">Температура згоряння</label>
       <select name="combustuion-t" id="combustuion-t">
         <option value="0">0 °С</option>
@@ -33,6 +33,12 @@
         °С
       </p>
       <p>Вміст води: <span id="water-content"></span> мг/м<sup>3</sup></p>
+      <p>
+        Точка роси, при тиску 
+        <input type="text" name="dp-pressure" id="dp-pressure" value="0.1">
+        МПа:
+        <span id="secondary-dew-point"></span> °С</sup>
+      </p>
 
       <div class="main-input">
         <table>

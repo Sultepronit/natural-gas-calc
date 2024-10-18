@@ -27,6 +27,9 @@ export const table2 = dewPoint.map((dewPoint, index) => {
         dewPoint,
         A: A[index],
         B: B[index],
+        get dewPointC() {
+            return ((this.dewPoint - 32) / 1.8).toFixed(1);
+        },
         calculateHumidity(p, correction = 1) {
             return (this.A / p + this.B) * correction * 16.0185;
         }

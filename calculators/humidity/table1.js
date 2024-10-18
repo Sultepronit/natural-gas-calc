@@ -84,6 +84,9 @@ export const table1 = temperature.map((temperature, index) => {
         k: k[index],
         ...(water[index] ? { water: water[index] } : null),
         ...(ice[index] ? { ice: ice[index] } : null),
+        get dewPointC() {
+            return ((this.dewPoint - 32) / 1.8).toFixed(1);
+        },
         calculateHumidity(p) {
             let w = 1 / this.k;
             if (this.ice) w = w * this.water / this.ice;

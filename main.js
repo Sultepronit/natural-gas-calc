@@ -19,10 +19,10 @@ prepareMainInput();
 
 calculateAndReport();
 
-console.log(table);
+// console.log(table);
 
-console.log(calculateHumidity2(-100));
-console.log(calculateHumidity2(-10));
-console.log(calculateHumidity2(-5));
+// console.log(calculateHumidity2(-100));
+// console.log(calculateHumidity2(-10));
+// console.log(calculateHumidity2(-5));
 
-console.log(unitedTable);
+// console.log(unitedTable);

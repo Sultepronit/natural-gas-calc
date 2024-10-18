@@ -1,5 +1,7 @@
 import GasData from "./calculators/gasData";
+import calculateDewPoint from "./calculators/humidity/calculateDewPoint";
 import calculateHumidity from "./calculators/humidity/calculateHumidity";
+import calculateHumidity2 from "./calculators/humidity/calculateHumidity2";
 import { inputData } from "./mainInput";
 import writeInitTable, { writeCorrectedTable } from "./writeInitTable";
 import writeReport, { writeWetReport } from "./writeReport";
@@ -9,6 +11,8 @@ const meteringTSelect = document.getElementById('metering-t');
 
 const dewPoint = document.getElementById('dew-point');
 const waterContent = document.getElementById('water-content');
+const secondaryDewPointPressure = document.getElementById('dp-pressure');
+const secondaryDewPointDisplay = document.getElementById('secondary-dew-point');
 
 const totalControl = document.getElementById('total-control');
 
@@ -23,9 +27,16 @@ export default function calculateAndReport() {
     console.log(gasData);
     writeReport(gasData);
 
-    const humidity = calculateHumidity(dewPoint.value);
+    // const humidity = calculateHumidity(dewPoint.value);
+    // console.log(humidity);
+    // waterContent.innerText = (humidity < 28 ? '< ' : '') + Math.round(humidity);
+    const humidity = calculateHumidity2(dewPoint.value);
     console.log(humidity);
-    waterContent.innerText = (humidity < 28 ? '< ' : '') + Math.round(humidity);
+    waterContent.innerText = Math.round(humidity);
+
+    const secondaryDewPoint = calculateDewPoint(humidity, secondaryDewPointPressure.value);
+    console.log(secondaryDewPoint);
+    secondaryDewPointDisplay.innerText = secondaryDewPoint;
 
     // const addWaterMV = 190.6183;
     const addWaterNV = humidity / 18 / 1000;
@@ -54,3 +65,4 @@ export default function calculateAndReport() {
 combustionTSelect.addEventListener('input', calculateAndReport);
 meteringTSelect.addEventListener('input', calculateAndReport);
 dewPoint.addEventListener('input', calculateAndReport);
+secondaryDewPointPressure.addEventListener('input', calculateAndReport);

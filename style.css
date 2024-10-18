@@ -33,6 +33,12 @@ table {
 
 #dew-point {
     width: 3em;
+    padding-inline: 0.1em;
+}
+
+#dp-pressure {
+    width: 3em;
+    padding-inline: 0.1em;
 }
 
 .main-input {
