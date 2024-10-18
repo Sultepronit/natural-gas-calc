@@ -10,6 +10,8 @@ import { realData } from './realData';
 import calculateAndReport from './calculateAndReport';
 import { table } from './calculators/humidity/table';
 import calculateHumidity from './calculators/humidity/calculateHumidity';
+import { unitedTable } from './calculators/humidity/unitedTable';
+import calculateHumidity2 from './calculators/humidity/calculateHumidity2';
 
 // export const temperatures = ['0', '15', '15.55', '20', '25'];
 
@@ -19,16 +21,8 @@ calculateAndReport();
 
 console.log(table);
 
-// console.log(calculateHumidity(-40));
+console.log(calculateHumidity2(-100));
+console.log(calculateHumidity2(-10));
+console.log(calculateHumidity2(-5));
 
-// console.log(calculateHumidity(-0.1));
-// console.log(calculateHumidity(0));
-// console.log(calculateHumidity(0.1));
-// console.log(calculateHumidity(6.7));
-
-// console.log(calculateHumidity(40));
-
-// console.log(calculateHumidity(99));
-// console.log(calculateHumidity(100));
-// console.log(calculateHumidity(101));
-// console.log(calculateHumidity(-10));
+console.log(unitedTable);

@@ -27,7 +27,7 @@ export default function calculateHumidity(tc) {
     // const p = 14.4;
     const p = 568.55;
     tc = (isNaN(tc) || tc === '') ? -100 : Number(tc);
-    console.log(tc);
+    
     let tf = tc * 1.8 + 32;
     // tf = tc;
     if (tf < -1) tf = -1;
@@ -40,13 +40,13 @@ export default function calculateHumidity(tc) {
         return calculateWaterContent(tableData.exact, p);
     }
 
-    const dewPointA = calculateWaterContent(tableData.from, p);
-    const dewPointB = calculateWaterContent(tableData.to, p);
+    const humidityA = calculateWaterContent(tableData.from, p);
+    const humidityB = calculateWaterContent(tableData.to, p);
     const diffA = tableData.to.dewPoint - tf;
     const diffB = tf - tableData.from.dewPoint;
     const diffSum = diffA + diffB;
     const factorA = diffA / diffSum;
     const factorB = diffB / diffSum;
 
-    return (dewPointA * factorA) + (dewPointB * factorB);
+    return (humidityA * factorA) + (humidityB * factorB);
 }
