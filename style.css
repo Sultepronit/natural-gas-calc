@@ -6,23 +6,38 @@
 }
 
 body {
-    margin: 0.2rem;
+    margin: 0.3rem;
     font-size: 1.2rem;
 }
 
 select, input {
     font-size: inherit;
-    font-style: italic;
+    /* font-style: italic; */
 }
 
-td {
+/* input[type="checkbox"] {
+    width: 0.7em;
+    height: 0.7em;
+} */
+
+td, th {
     border: solid 1px;
     padding: 0.1em 0.4em;
 }
 
+th {
+    text-align: left;
+    font-weight: normal;
+}
+
 table {
     border-collapse: collapse;
-    margin-inline: 0.5rem;
+    /* margin-inline: 0.5rem; */
+    /* margin-bottom: 0.5rem; */
+}
+
+.hidden {
+    display: none;
 }
 
 .version {
@@ -32,12 +47,15 @@ table {
 }
 
 #dew-point {
-    width: 3em;
+    width: 0.7em;
+    min-width: 0.7em;
     padding-inline: 0.1em;
 }
 
 #dp-pressure {
-    width: 3em;
+    /* width: 3em; */
+    /* width: 100%; */
+    /* width: 2em; */
     padding-inline: 0.1em;
 }
 
@@ -47,7 +65,7 @@ table {
 
 #total-control {
     text-align: right;
-    padding-inline: 1em;
+    padding-inline: 0.1em;
 }
 
 .td-input {
@@ -56,23 +74,28 @@ table {
 
 .table-input {
     border: none;
-    width: 6em;
+    border-bottom: 1px solid gray;
+    /* width: 6em; */
+    /* width: auto;
+    min-width: 2em; */
 }
-
-/* .init-data {
-    float: left;
-} */
 
 .main-input, .corrected-data {
     float: left;
 }
 
-.space {
-    clear: both;
-    margin: 0.4rem;
-    padding: 0.4rem;
+.corrected-data {
+    margin-left: 0.5rem;
 }
 
-.report {
-    float: left;
+.space {
+    clear: both;
+    /* margin: 0.4rem; */
+    padding: 0.3rem;
+}
+
+.wet-report {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
 }

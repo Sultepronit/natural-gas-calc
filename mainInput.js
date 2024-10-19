@@ -42,6 +42,7 @@ export function prepareMainInput() {
                         class="table-input"
                         name="${component.name}"
                         oninput="handleInput(event, ${index})"
+                        style="width: ${String(component.value).length + 0.5}ch"
                         value="${component.value}"
                     >
                 </td>
@@ -54,6 +55,9 @@ export function prepareMainInput() {
 window.handleInput = (e, index) => {
     console.log(e.target.name);
     console.log(e.target.value);
+
+    e.target.style.width = (e.target.value.length + 0.5) + 'ch';
+
     inputData[index].value = e.target.value;
     console.log(inputData);
     localStorage.setItem('inputData', JSON.stringify(inputData));
