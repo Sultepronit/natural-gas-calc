@@ -1,0 +1,13 @@
+@media print {
+    header, footer {
+        display: none;
+    }
+
+    .no-print {
+        display: none;
+    }
+
+    .table-input {
+        border: none;
+    }
+}

@@ -1,4 +1,5 @@
 import './style.css';
+import './print-style.css';
 // import writeReport, { writeWetReport } from './writeReport';
 // import GasData from './calculators/gasData';
 // import gatherConsts from './calculators/gatherConts';
@@ -19,10 +20,3 @@ prepareMainInput();
 
 calculateAndReport();
 
-// console.log(table);
-
-// console.log(calculateHumidity2(-100));
-// console.log(calculateHumidity2(-10));
-// console.log(calculateHumidity2(-5));
-
-// console.log(unitedTable);

@@ -19,6 +19,7 @@ const correctedData = document.getElementById('corrected-data');
 const totalControl = document.getElementById('total-control');
 
 const dryReport = document.getElementById('dry-report');
+const mainInput = document.getElementById('main-input');
 
 secondaryDewPointPressure.style.width
     = (secondaryDewPointPressure.value.length + 0.5) + 'ch';
@@ -28,10 +29,12 @@ humidityToggler.addEventListener('change', () => {
         humidityData.classList.remove('hidden');
         correctedData.classList.remove('hidden');
         dryReport.classList.add('hidden');
+        mainInput.classList.add('no-print');
     } else {
         humidityData.classList.add('hidden');
         correctedData.classList.add('hidden');
         dryReport.classList.remove('hidden');
+        mainInput.classList.remove('no-print');
     }
 });
 

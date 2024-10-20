@@ -8,6 +8,7 @@
 body {
     padding: 0.5rem;
     font-size: 1.2rem;
+    /* font-size: 0.2rem; */
     display: grid;
     grid-template-rows: auto 1fr auto;
     height: 100vh;
@@ -61,6 +62,13 @@ table {
     display: none;
 }
 
+.save {
+    float: right;
+    font-size: 1.5rem;
+    padding-inline: 0.5em;
+    /* color: gray; */
+}
+
 #dew-point {
     width: 0.7em;
     min-width: 0.7em;
@@ -70,7 +78,6 @@ table {
 #dp-pressure {
     padding-inline: 0.1em;
 }
-
 
 #total-control {
     text-align: right;
