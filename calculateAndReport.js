@@ -2,7 +2,7 @@ import GasData from "./calculators/gasData";
 import calculateDewPoint from "./calculators/humidity/calculateDewPoint";
 import calculateHumidity2 from "./calculators/humidity/calculateHumidity2";
 import { inputData } from "./mainInput";
-import writeInitTable, { writeCorrectedTable } from "./writeInitTable";
+import { writeCorrectedTable } from "./writeCorectedData";
 import writeReport, { writeWetReport } from "./writeReport";
 
 const combustionTSelect = document.getElementById('combustuion-t');

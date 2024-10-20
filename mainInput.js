@@ -35,7 +35,7 @@ export function prepareMainInput() {
     const tbody = inputData.reduce((html, component, index) => {
         return html +
             `<tr>
-                <td>${component.label}</td>
+                <th>${component.label}</th>
                 <td class="td-input">
                     <input
                         type="text"

@@ -6,8 +6,25 @@
 }
 
 body {
-    margin: 0.3rem;
+    padding: 0.5rem;
     font-size: 1.2rem;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: 100vh;
+}
+
+header {
+    padding-bottom: 0.4rem;
+}
+
+main {
+    overflow: auto;
+}
+
+footer {
+    /* position: absolute; */
+    /* position: sticky; */
+    padding-top: 0.4rem;
 }
 
 select, input {
@@ -15,10 +32,9 @@ select, input {
     /* font-style: italic; */
 }
 
-/* input[type="checkbox"] {
-    width: 0.7em;
-    height: 0.7em;
-} */
+tr {
+    height: 1.7rem;
+}
 
 td, th {
     border: solid 1px;
@@ -28,6 +44,11 @@ td, th {
 th {
     text-align: left;
     font-weight: normal;
+    width: 15em;
+}
+
+td {
+    width: 7rem;
 }
 
 table {
@@ -40,12 +61,6 @@ table {
     display: none;
 }
 
-.version {
-    /* text-align: right; */
-    float: right;
-    font-size: 1rem;
-}
-
 #dew-point {
     width: 0.7em;
     min-width: 0.7em;
@@ -53,15 +68,9 @@ table {
 }
 
 #dp-pressure {
-    /* width: 3em; */
-    /* width: 100%; */
-    /* width: 2em; */
     padding-inline: 0.1em;
 }
 
-.main-input {
-    width: fit-content;
-}
 
 #total-control {
     text-align: right;
@@ -75,17 +84,15 @@ table {
 .table-input {
     border: none;
     border-bottom: 1px solid gray;
+    padding-inline: 0.1em;
     /* width: 6em; */
     /* width: auto;
     min-width: 2em; */
 }
 
-.main-input, .corrected-data {
-    float: left;
-}
-
-.corrected-data {
-    margin-left: 0.5rem;
+.gas-composition {
+    display: flex;
+    gap: 1rem;
 }
 
 .space {
@@ -94,8 +101,18 @@ table {
     padding: 0.3rem;
 }
 
+#humidity-data {
+    margin-top: 0.5rem;
+}
+
 .wet-report {
     display: flex;
-    gap: 0.5rem;
+    gap: 1rem;
     margin-top: 0.5rem;
+}
+
+.version {
+    text-align: center;
+    /* float: right; */
+    font-size: 1rem;
 }

@@ -15,7 +15,7 @@ export default function writeReport(gasData) {
     const report2 = rows.reduce((acc, current) => {
         return acc +
             `<tr>
-                <td>${current[0]}</td>
+                <th>${current[0]}</th>
                 <td>${gasData[current[1]].toFixed(5)}</td>
             </tr>`;
     }, '');
@@ -41,7 +41,7 @@ export function writeWetReport(wetGasData, dryGasData) {
     const report = rows.reduce((acc, current) => {
         return acc +
         `<tr>
-            <td>${current[0]}</td>
+            <th>${current[0]}</th>
             <td>${parseFloat(wetGasData[current[1]].toFixed(5))}</td>
         </tr>`;
     }, '');

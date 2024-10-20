@@ -9,8 +9,6 @@
   </head>
   <body>
     <header>
-      <p class="version">Natural Gas Calc v0.0.2</p>
-
       <label for="combustuion-t">Температура згоряння</label>
       <select name="combustuion-t" id="combustuion-t">
         <option value="0">0 °С</option>
@@ -36,22 +34,24 @@
       </div>
     </header>
     <main>
-      <div class="main-input">
-        <table>
-          <caption>Склад газу</caption>
-          <tbody id="main-input-body">
+      <div class="gas-composition">
+        <table class="corrected-data hidden" id="corrected-data">
+          <caption>Доповнений склад газу</caption>
+          <tbody id="corrected-data-body">
           </tbody>
         </table>
-        <p id="total-control">*</p>
+  
+        <div class="main-input">
+          <table>
+            <caption>Склад газу</caption>
+            <tbody id="main-input-body">
+            </tbody>
+          </table>
+          <p id="total-control">*</p>
+        </div>
       </div>
 
-      <table class="corrected-data hidden" id="corrected-data">
-        <caption>Доповнений склад газу</caption>
-        <tbody id="corrected-data-body">
-        </tbody>
-      </table>
-
-      <div class="space"></div>
+      <!-- <div class="space"></div> -->
 
       <div id="humidity-data" class="hidden">
       <!-- <div id="humidity-data" > -->
@@ -115,5 +115,9 @@
         </tbody>
       </table>
     </main>
+
+    <footer>
+      <p class="version">Natural Gas Calc v0.1.1</p>
+    </footer>
   </body>
 </html>
