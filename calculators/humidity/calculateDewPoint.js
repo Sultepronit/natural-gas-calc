@@ -3,7 +3,7 @@ import calculateCorrection from "./calculateCorrection";
 import { unitedTable } from "./unitedTable";
 
 export default function calculateDewPoint(humidity, gaugePressure) {
-    const p = (gaugePressure + 0.101325) * 1000 / 6.89475729; // gauge MPa to psia
+    const p = (Number(gaugePressure) + 0.101325) * 1000 / 6.89475729; // gauge MPa to psia
     const correction = calculateCorrection(p);
 
     let candidateIndex = unitedTable.findIndex(row => {
