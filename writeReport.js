@@ -1,22 +1,27 @@
 const reportBody = document.getElementById('report-body');
 
-export default function writeReport(gasData) {
-    const rows = [
-        ['Масова теплота згоряння, вища', 'Hm_G'],
-        ['Масова теплота згоряння, нижа', 'Hm_N'],
-        ['Об\'ємна теплота згоряння, вища', 'Hv_G'],
-        ['Об\'ємна теплота згоряння, нижа', 'Hv_N'],
-        ['Відносна густина', 'G'],
-        ['Густина', 'D'],
-        ['Число Воббе, вище', 'W_G'],
-        ['Число Воббе, нижче', 'W_N'],
-    ];
+const rows = [
+    ['Масова теплота згоряння, вища', 'Hm_G'],
+    ['Масова теплота згоряння, нижа', 'Hm_N'],
+    ['Об\'ємна теплота згоряння, вища', 'Hv_G'],
+    ['Об\'ємна теплота згоряння, нижа', 'Hv_N'],
+    ['Відносна густина', 'G'],
+    ['Густина', 'D'],
+    ['Число Воббе, вище', 'W_G'],
+    ['Число Воббе, нижче', 'W_N'],
+    ['Коефіцієнт реального газу (30 атм)', 'Z30'],
+    ['Коефіцієнт вмісту газу (за етаном)', 'K_et'],
+    ['Коефіцієнт вмісту газу (за пропаном)', 'K_pr'],
+    ['НКМ', 'lfl'],
+    ['ВКМ', 'ufl'],
+];
 
+export default function writeReport(gasData) {
     const report2 = rows.reduce((acc, current) => {
         return acc +
             `<tr>
                 <th>${current[0]}</th>
-                <td>${gasData[current[1]].toFixed(5)}</td>
+                <td>${parseFloat(gasData[current[1]].toFixed(5))}</td>
             </tr>`;
     }, '');
 
@@ -27,17 +32,6 @@ const wetReportBody = document.getElementById('wet-report-body');
 const wetDiffBody = document.getElementById('wet-diff-body');
 
 export function writeWetReport(wetGasData, dryGasData) {
-    const rows = [
-        ['Масова теплота згоряння, вища', 'Hm_G'],
-        ['Масова теплота згоряння, нижа', 'Hm_N'],
-        ['Об\'ємна теплота згоряння, вища', 'Hv_G'],
-        ['Об\'ємна теплота згоряння, нижа', 'Hv_N'],
-        ['Відносна густина', 'G'],
-        ['Густина', 'D'],
-        ['Число Воббе, вище', 'W_G'],
-        ['Число Воббе, нижче', 'W_N'],
-    ];
-
     const report = rows.reduce((acc, current) => {
         return acc +
         `<tr>

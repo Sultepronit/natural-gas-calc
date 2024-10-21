@@ -59,6 +59,31 @@ class GasData {
     get W_N() {
         return this.Hv_N / Math.sqrt(this.G);
     };
+    get Z30() {
+        return 1 - 30 / 1 * this.s**2;
+    };
+    get K_et() {
+        const c_met = this.components.find(component => component.name === 'methane').value;
+        const c_et = this.components.find(component => component.name === 'ethane').value;
+        return Math.round(c_met / c_et);
+    };
+    get K_pr() {
+        const c_met = this.components.find(component => component.name === 'methane').value;
+        const c_pr = this.components.find(component => component.name === 'propane').value;
+        return Math.round(c_met / c_pr);
+    };
+    get lfl() {
+        const long = 1 / this.components.reduce((acc, current) => {
+            return acc + (current.flamability?.lfl ? current.value / current.flamability.lfl : 0);
+        }, 0);
+        return Number(long.toFixed(1));
+    };
+    get ufl() {
+        const long = 1 / this.components.reduce((acc, current) => {
+            return acc + (current.flamability?.ufl ? current.value / current.flamability.ufl : 0);
+        }, 0);
+        return Number(long.toFixed(1));
+    };
 };
 
 export default GasData;

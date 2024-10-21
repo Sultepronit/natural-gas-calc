@@ -4,7 +4,7 @@ import './print-style.css';
 // import GasData from './calculators/gasData';
 // import gatherConsts from './calculators/gatherConts';
 // import writeInitTable, { writeCorrectedTable } from './writeInitTable';
-import { inputData, prepareMainInput } from './mainInput';
+import { prepareMainInput } from './mainInput';
 // import { inputData as example3 } from './input-data';
 // import { example2 } from './example2';
 // import { realData } from './realData';
@@ -19,4 +19,3 @@ import calculateAndReport from './calculateAndReport';
 prepareMainInput();
 
 calculateAndReport();
-

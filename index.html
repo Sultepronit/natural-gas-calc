@@ -65,7 +65,7 @@
         <table>
           <tbody>
             <tr>
-              <th>Точка роси, при тиску 3.92 МПа</th>
+              <th>Точка роси (3.92 МПа, абс.)</th>
               <td>
                 <input
                   type="text"
@@ -78,17 +78,17 @@
               </td>
             </tr>
             <tr>
-              <th>
-                Точка роси, при тиску 
+              <th title="+ 0.101325 МПа">
+                Точка роси (
                 <input
                   type="text"
                   name="dp-pressure"
                   id="dp-pressure"
                   class="table-input"
-                  value="0.1"
+                  value="0"
                   oninput="this.style.width = (this.value.length + 0.5) + 'ch';"
                 >
-                МПа
+                МПа, надл.)
               </th>
               <td><span id="secondary-dew-point"></span> °С</td>
             </tr>
@@ -124,7 +124,7 @@
     </main>
 
     <footer>
-      <p class="version">Natural Gas Calc v0.1.3</p>
+      <p class="version">Natural Gas Calc v0.1.4</p>
     </footer>
   </body>
 </html>

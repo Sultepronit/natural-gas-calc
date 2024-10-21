@@ -1,4 +1,5 @@
 import { constsTable } from "./constsTable";
+import flamabilityTable from "./flamabilityTable";
 import { names } from "./names";
 
 export const componentConsts = names.map((name, index) => {
@@ -18,7 +19,8 @@ export const componentConsts = names.map((name, index) => {
             '15': Number(constsTable[index][12].replace(',', '.')),
             '15.55': Number(constsTable[index][13].replace(',', '.')),
             '20': Number(constsTable[index][14].replace(',', '.')),
-        }
+        },
+        flamability: flamabilityTable[name]
     }
 });
 
