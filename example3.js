@@ -40,7 +40,7 @@ const uncertainties = [
     0.0001120,
 ];
 
-export const inputData = components.map((name, index) => {
+export const example3 = components.map((name, index) => {
     // console.log(index, component);
     return {
         name,

@@ -1,7 +1,7 @@
 const reportBody = document.getElementById('report-body');
 
 const rows = [
-    ['Масова теплота згоряння, вища', 'Hm_G'],
+    ['Масова теплота згоряння, вища', 'Hm_G', 'u_Hm_G'],
     ['Масова теплота згоряння, нижча', 'Hm_N'],
     ['Об\'ємна теплота згоряння, вища', 'Hv_G'],
     ['Об\'ємна теплота згоряння, нижча', 'Hv_N'],
@@ -16,12 +16,25 @@ const rows = [
     ['ВКМ', 'ufl'],
 ];
 
+const getU = (u) => (u * 2).toPrecision(2);
+function roundValue(value, U) {
+    const n = U.split('.')[1]?.length;
+    return value.toFixed(n);
+}
+
 export default function writeReport(gasData) {
-    const report2 = rows.reduce((acc, current) => {
+    const report2 = rows.reduce((acc, row) => {
+        const [title, valueName] = row;
+
+        const U = getU(gasData[`u_${valueName}`] || 0.01);
+
+        roundValue(gasData[valueName], U);
+
         return acc +
             `<tr>
-                <th>${current[0]}</th>
-                <td>${parseFloat(gasData[current[1]].toFixed(5))}</td>
+                <th>${title}</th>
+                <td>${roundValue(gasData[valueName], U)}</td>
+                <td>${U}</td>
             </tr>`;
     }, '');
 

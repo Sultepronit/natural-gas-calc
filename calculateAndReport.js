@@ -1,6 +1,8 @@
 import GasData from "./calculators/gasData";
 import calculateDewPoint from "./calculators/humidity/calculateDewPoint";
 import calculateHumidity2 from "./calculators/humidity/calculateHumidity2";
+import { example2 } from "./example2";
+import { example3 } from "./example3";
 import { inputData } from "./mainInput";
 import { writeCorrectedTable } from "./writeCorectedData";
 import writeReport, { writeWetReport } from "./writeReport";
@@ -75,12 +77,18 @@ function wetGasCase(components, dryGasData) {
 
     // wetGasData.humidity = Math.round(humidity);
     console.log('wet:', wetGasData);
+    console.log(wetGasData.components);
 
     writeWetReport(wetGasData, dryGasData);
 }
 
 export default function calculateAndReport() {
-    const components = inputData.map(component => ({ ...component, value: (component.value / 100) || 0 }));
+    const components = inputData.map(component => ({
+        ...component,
+        value: (component.value / 100) || 0,
+        uncertainty: (component.uncertainty / 2 / 100) || 0
+    }));
+    // const components = example3;
     console.log(components);
     const total = components.reduce((acc, component) => acc + component.value, 0) * 100;
     totalControl.innerText = `${total.toFixed(4)}`;
@@ -88,6 +96,9 @@ export default function calculateAndReport() {
     const gasData = new GasData(components, combustionTSelect.value, meteringTSelect.value);
     console.log('dry:', gasData);
     writeReport(gasData);
+
+    console.log(gasData.u_Hm_G);
+    console.log(gasData.u_Hm_N);
 
     wetGasCase(components, gasData);
 }

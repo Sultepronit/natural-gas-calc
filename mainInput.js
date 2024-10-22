@@ -11,22 +11,22 @@ class GasComponent {
     }
 }
 
-const restored = JSON.parse(localStorage.getItem('inputData'));
-// const restored = null;
+// const restored = JSON.parse(localStorage.getItem('inputData'));
+const restored = null;
 
 export const inputData = restored || [
-    new GasComponent('methane', 'метан', 86.64),
-    new GasComponent('ethane', 'етан', 5.8),
-    new GasComponent('propane', 'пропан', 1.58),
-    new GasComponent('n-butane', 'н-бутан', 0.269),
-    new GasComponent('2-methylpropane', '2-метилпропан', 0.147),
-    new GasComponent('n-pentane', 'н-пентан', 0.069),
-    new GasComponent('2-methylbutane', '2-метилбутан', 0.073),
-    new GasComponent('2,2-dimethylpropane', '2,2-диметилпропан', 0.0052),
-    new GasComponent('n-hexane', 'н-гексан', 0.061),
-    new GasComponent('nitrogen', 'азот', 1.93),
-    new GasComponent('carbon dioxide', 'вуглекислий газ', 3.4),
-    new GasComponent('oxygen', 'кисень', 0.0164),
+    new GasComponent('methane', 'метан', 86.64, 0.26),
+    new GasComponent('ethane', 'етан', 5.8, 0.23),
+    new GasComponent('propane', 'пропан', 1.58, 0.1),
+    new GasComponent('n-butane', 'н-бутан', 0.269, 0.016),
+    new GasComponent('2-methylpropane', '2-метилпропан', 0.147, 0.009),
+    new GasComponent('n-pentane', 'н-пентан', 0.069, 0.004),
+    new GasComponent('2-methylbutane', '2-метилбутан', 0.073, 0.005),
+    new GasComponent('2,2-dimethylpropane', '2,2-диметилпропан', 0.0052, 0.001),
+    new GasComponent('n-hexane', 'н-гексан', 0.061, 0.004),
+    new GasComponent('nitrogen', 'азот', 1.93, 0.08),
+    new GasComponent('carbon dioxide', 'вуглекислий газ', 3.4, 0.21),
+    new GasComponent('oxygen', 'кисень', 0.0164, 0.0022),
     // new GasComponent('hydrogen sulfide', 'hydrogen sulfide', 0.0164),
 ];
 
