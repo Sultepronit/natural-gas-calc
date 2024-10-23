@@ -58,34 +58,37 @@
                     const typedArray = new Uint8Array(this.result);
 
                     // Load the PDF
-                    pdfjsLib.getDocument(typedArray).promise.then(async function(pdf) {
-                        let fullText = '';
-                        
-                        // Iterate over each page
-                        const textData = [];
-                        for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
-                            textData[pageNum] = [];
-                            const page = await pdf.getPage(pageNum);
-                            const textContent = await page.getTextContent();
+                    pdfjsLib.getDocument(typedArray).promise.then(
+                        smth => console.log(smth);
+                        // async function(pdf) {
+                        //     let fullText = '';
+                            
+                        //     // Iterate over each page
+                        //     const textData = [];
+                        //     for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                        //         textData[pageNum] = [];
+                        //         const page = await pdf.getPage(pageNum);
+                        //         const textContent = await page.getTextContent();
 
-                            // Extract the text from the page's text items
-                            textContent.items.forEach(item => {
-                                if (item.str === '') return;
-                                if (item.str === ' ') return;
+                        //         // Extract the text from the page's text items
+                        //         textContent.items.forEach(item => {
+                        //             if (item.str === '') return;
+                        //             if (item.str === ' ') return;
 
-                                fullText += item.str + '<br>';
-                                console.log(item.str);
-                                console.log(item.transform);
-                                // console.log(item);
-                                textData[pageNum].push(item);
-                            });
-                        }
-                        console.log(textData);
-                        localStorage.setItem('textData', JSON.stringify(textData));
-                        
-                        // Display the extracted text
-                        document.getElementById('output').innerHTML = fullText;
-                    });
+                        //             fullText += item.str + '<br>';
+                        //             console.log(item.str);
+                        //             console.log(item.transform);
+                        //             // console.log(item);
+                        //             textData[pageNum].push(item);
+                        //         });
+                        //     }
+                        //     console.log(textData);
+                        //     localStorage.setItem('textData', JSON.stringify(textData));
+                            
+                        //     // Display the extracted text
+                        //     document.getElementById('output').innerHTML = fullText;
+                        // }
+                    );
                 };
 
                 // Read the file as an ArrayBuffer
