@@ -572,7 +572,8 @@ var j = [0, 1, 5, 10, 20, 30, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44
     get dewPointC() {
       return ((this.dewPoint - 32) / 1.8).toFixed(1);
     },
-    calculateHumidity(t, n = 1) {
+    calculateHumidity(t) {
+      var n = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
       return (this.A / t + this.B) * n * 16.0185;
     }
   }));
