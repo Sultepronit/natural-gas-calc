@@ -28,12 +28,12 @@ export default function writeReport(gasData) {
 
         const U = getU(gasData[`u_${valueName}`] || 0.01);
 
-        roundValue(gasData[valueName], U);
+        const value = roundValue(gasData[valueName], U);
 
         return acc +
             `<tr>
                 <th>${title}</th>
-                <td>${roundValue(gasData[valueName], U)}</td>
+                <td>${value}</td>
                 <td>${U}</td>
             </tr>`;
     }, '');
@@ -45,23 +45,36 @@ const wetReportBody = document.getElementById('wet-report-body');
 const wetDiffBody = document.getElementById('wet-diff-body');
 
 export function writeWetReport(wetGasData, dryGasData) {
-    const report = rows.reduce((acc, current) => {
+    const report = rows.reduce((acc, row) => {
+        const [title, valueName] = row;
+
+        const U = getU(wetGasData[`u_${valueName}`] || 0.01);
+
+        const value = roundValue(wetGasData[valueName], U);
+
         return acc +
         `<tr>
-            <th>${current[0]}</th>
-            <td>${parseFloat(wetGasData[current[1]].toFixed(5))}</td>
+            <th>${title}</th>
+            <td>${value}</td>
+            <td>${U}</td>
         </tr>`;
     }, '');
 
     wetReportBody.innerHTML = report;
 
-    const diffReport = rows.reduce((acc, current) => {
-        const diff = dryGasData[current[1]] - wetGasData[current[1]];
-        const diffPercent = diff / dryGasData[current[1]] * 100;
+    const diffReport = rows.reduce((acc, row) => {
+        const valueName = row[1];
+
+        const diff = dryGasData[valueName] - wetGasData[valueName];
+
+        const U = getU(wetGasData[`u_${valueName}`] || 0.01);
+        const value = roundValue(diff, U);
+
+        const diffPercent = (value / dryGasData[valueName] * 100).toPrecision(2);
         return acc +
         `<tr>
-            <td>${parseFloat(diff.toFixed(5))}</td>
-            <td>${parseFloat(diffPercent.toFixed(4))}%</td>
+            <td>${parseFloat(value)}</td>
+            <td>${parseFloat(diffPercent)} %</td>
         </tr>`;
     }, '');
 

@@ -64,7 +64,12 @@ function wetGasCase(components, dryGasData) {
             value: component.value * humidityFactor
         };
     });
-    wetGasComponents.push({ name: 'water', label: 'вода', value: waterX});
+    wetGasComponents.push({
+        name: 'water',
+        label: 'вода',
+        value: waterX,
+        uncertainty: waterX * 0.5
+    });
     writeCorrectedTable(wetGasComponents);
 
     const wetGasData = new GasData(wetGasComponents, combustionTSelect.value, meteringTSelect.value);
@@ -102,7 +107,7 @@ export default function calculateAndReport() {
     console.log(gasData.u_Hv_G);
     console.log(gasData.u_Hv_N);
 
-    // wetGasCase(components, gasData);
+    wetGasCase(components, gasData);
 }
 
 combustionTSelect.addEventListener('input', calculateAndReport);
