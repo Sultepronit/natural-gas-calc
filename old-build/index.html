@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/gas.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Natural Gas Calc</title>
+    <script type="module" crossorigin src="/assets/index-BmwL2ZS5.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CAtwdJYZ.css">
+  </head>
+  <body>
+    <header>
+      <button class="save" onclick="window.print()">зберегти звіт</button>
+
+      <label for="combustuion-t">Температура згоряння</label>
+      <select name="combustuion-t" id="combustuion-t">
+        <option value="0">0 °С</option>
+        <option value="15">15 °С</option>
+        <option value="15.55">60 °F</option>
+        <option value="20">20 °С</option>
+        <option value="25" selected>25 °С</option>
+      </select>
+
+      <label for="metering-t">Температура вимірювання</label>
+      <select name="metering-t" id="metering-t">
+        <option value="0">0 °С</option>
+        <option value="15">15 °С</option>
+        <option value="15.55">60 °F</option>
+        <option value="20" selected>20 °С</option>
+      </select>
+
+      <div>
+        <label for="humidity-toggler">
+          <input type="checkbox" name="humidity-toggler" id="humidity-toggler">
+          Врахувати вологу
+        </label>
+      </div>
+    </header>
+
+    <main>
+      <div class="only-print">
+        <!-- Температура вимірювання:  -->
+      </div>
+
+      <div class="gas-composition" id="gas-composition">
+        <table class="corrected-data hidden" id="corrected-data">
+          <caption>Доповнений склад газу</caption>
+          <tbody id="corrected-data-body">
+          </tbody>
+        </table>
+  
+        <div class="main-input" id="main-input">
+          <table>
+            <caption>Склад газу</caption>
+            <tbody id="main-input-body">
+            </tbody>
+          </table>
+          <p class="no-print" id="total-control">*</p>
+        </div>
+      </div>
+
+      <!-- <div class="space"></div> -->
+
+      <div id="humidity-data" class="hidden">
+      <!-- <div id="humidity-data" > -->
+        <table>
+          <tbody>
+            <tr>
+              <th>Точка роси (3.92 МПа, абс.)</th>
+              <td>
+                <input
+                  type="text"
+                  name="dew-point"
+                  id="dew-point"
+                  class="table-input"
+                  oninput="this.style.width = (this.value.length + 0.5) + 'ch';"
+                >
+                °С
+              </td>
+            </tr>
+            <tr>
+              <th title="+ 0.101325 МПа">
+                Точка роси (
+                <input
+                  type="text"
+                  name="dp-pressure"
+                  id="dp-pressure"
+                  class="table-input"
+                  value="0"
+                  oninput="this.style.width = (this.value.length + 0.5) + 'ch';"
+                >
+                МПа, надл.)
+              </th>
+              <td><span id="secondary-dew-point"></span> °С</td>
+            </tr>
+            <tr>
+              <th>
+                Вміст води
+              </th>
+              <td><span id="water-content"></span> мг/м<sup>3</sup></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="wet-report">
+          <table class="report">
+            <caption>Параметри газу</caption>
+            <tbody id="wet-report-body">
+            </tbody>
+          </table>
+  
+          <table class="diff-table no-print">
+            <caption>Втрати</caption>
+            <tbody id="wet-diff-body">
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <table class="report" id="dry-report">
+        <caption>Параметри газу</caption>
+        <tbody id="report-body">
+        </tbody>
+      </table>
+    </main>
+
+    <footer>
+      <p class="version">Natural Gas Calc v0.1.5</p>
+    </footer>
+  </body>
+</html>
