@@ -58,8 +58,9 @@
                     const typedArray = new Uint8Array(this.result);
 
                     // Load the PDF
+                    console.log(typedArray);
                     pdfjsLib.getDocument(typedArray).promise.then(
-                        smth => console.log(smth);
+                        // smth => console.log(smth);
                         // async function(pdf) {
                         //     let fullText = '';
                             
