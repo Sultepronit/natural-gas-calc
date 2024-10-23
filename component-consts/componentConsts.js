@@ -25,6 +25,7 @@ export const componentConsts = names.map((name, index) => {
             '15.55': Number(constsTable[index][13].replace(',', '.')),
             '20': Number(constsTable[index][14].replace(',', '.')),
         },
+        u_s: Number(constsTable[index][15].replace(',', '.')),
         flamability: flamabilityTable[name]
     }
 });

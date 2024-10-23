@@ -99,8 +99,10 @@ export default function calculateAndReport() {
 
     console.log(gasData.u_Hm_G);
     console.log(gasData.u_Hm_N);
+    console.log(gasData.u_Hv_G);
+    console.log(gasData.u_Hv_N);
 
-    wetGasCase(components, gasData);
+    // wetGasCase(components, gasData);
 }
 
 combustionTSelect.addEventListener('input', calculateAndReport);
