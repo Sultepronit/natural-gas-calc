@@ -1,4 +1,5 @@
 const reportBody = document.getElementById('report-body');
+const addReportBody = document.getElementById('add-report-body');
 
 const rows = [
     ['Молярна теплота згоряння, вища', 'Hc_G'],
@@ -12,10 +13,12 @@ const rows = [
     ['Число Воббе, вище', 'W_G'],
     ['Число Воббе, нижче', 'W_N'],
     // ['Коефіцієнт реального газу (30 атм)', 'Z30'],
-    ['Коефіцієнт вмісту газу (за етаном)', 'K_et'],
-    ['Коефіцієнт вмісту газу (за пропаном)', 'K_pr'],
-    ['НКМ', 'lfl'],
-    ['ВКМ', 'ufl'],
+    // ['Коефіцієнт вмісту газу (за етаном)', 'K_et'],
+    // ['Коефіцієнт вмісту газу (за пропаном)', 'K_pr'],
+    // ['НКМ (0 °С)', 'lflT0'],
+    // ['НКМ (20 °С)', 'lflT20'],
+    // ['ВКМ (0 °С)', 'uflT0'],
+    // ['ВКМ (20 °С)', 'uflT20'],
 ];
 
 const getU = (u) => (u * 2).toPrecision(2);
@@ -41,6 +44,31 @@ export default function writeReport(gasData) {
     }, '');
 
     reportBody.innerHTML = report2;
+}
+
+const addRows = [
+    ['Коефіцієнт вмісту газу (за етаном)', 'K_et'],
+    ['Коефіцієнт вмісту газу (за пропаном)', 'K_pr'],
+    // ['НКМ (0 °С)', 'lflT0'],
+    // ['НКМ (20 °С)', 'lflT20'],
+    // ['ВКМ (0 °С)', 'uflT0'],
+    // ['ВКМ (20 °С)', 'uflT20'],
+    ['Межі поширення полум\'я (0 °С)', 'flsT0'],
+    ['Межі поширення полум\'я (20 °С)', 'flsT20'],
+];
+
+export function writeAddReport(gasData) {
+    const report = addRows.reduce((acc, row) => {
+        const [title, valueName] = row;
+
+        return acc +
+            `<tr>
+                <th>${title}</th>
+                <td>${gasData[valueName]}</td>
+            </tr>`;
+    }, '');
+
+    addReportBody.innerHTML = report;
 }
 
 const wetReportBody = document.getElementById('wet-report-body');

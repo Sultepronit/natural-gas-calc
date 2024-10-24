@@ -5,7 +5,7 @@ import { example2 } from "./example2";
 import { example3 } from "./example3";
 import { inputData } from "./mainInput";
 import { writeCorrectedTable } from "./writeCorectedData";
-import writeReport, { writeWetReport } from "./writeReport";
+import writeReport, { writeAddReport, writeWetReport } from "./writeReport";
 
 const combustionTSelect = document.getElementById('combustuion-t');
 const meteringTSelect = document.getElementById('metering-t');
@@ -97,6 +97,8 @@ export default function calculateAndReport() {
     const gasData = new GasData(components, combustionTSelect.value, meteringTSelect.value);
     console.log('dry:', gasData);
     writeReport(gasData);
+    writeAddReport
+    (gasData);
 
     console.log(gasData.u_Hm_G);
     console.log(gasData.u_Hm_N);

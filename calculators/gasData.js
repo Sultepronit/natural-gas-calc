@@ -103,17 +103,74 @@ class GasData {
         const c_pr = this.components.find(component => component.name === 'propane').value;
         return Math.round(c_met / c_pr);
     };
-    get lfl() {
+    get lflT20() {
         const long = 1 / this.components.reduce((acc, current) => {
-            return acc + (current.flamability?.lfl ? current.value / current.flamability.lfl : 0);
+            return acc + (current.flamability?.t20.lfl ? current.value / current.flamability.t20.lfl : 0);
         }, 0);
         return Number(long.toFixed(1));
     };
-    get ufl() {
+    get lflT0() {
         const long = 1 / this.components.reduce((acc, current) => {
-            return acc + (current.flamability?.ufl ? current.value / current.flamability.ufl : 0);
+            return acc + (current.flamability?.t0.lfl ? current.value / current.flamability.t0.lfl : 0);
         }, 0);
         return Number(long.toFixed(1));
+    };
+    get uflT20() {
+        const long = 1 / this.components.reduce((acc, current) => {
+            return acc + (current.flamability?.t20.ufl ? current.value / current.flamability.t20.ufl : 0);
+        }, 0);
+        return Number(long.toFixed(1));
+    };
+    get uflT0() {
+        const long = 1 / this.components.reduce((acc, current) => {
+            return acc + (current.flamability?.t0.ufl ? current.value / current.flamability.t0.ufl : 0);
+        }, 0);
+        return Number(long.toFixed(1));
+    };
+    get flsT0() {
+        return `${this.lflT0} - ${this.uflT0}`;
+    };
+    get flsT20() {
+        return `${this.lflT20} - ${this.uflT20}`;
+    };
+    get u_Hc_G() {
+        let part1 = 0;
+        for (const i of this.components) {
+            for (const j of this.components) {
+                part1 += i.Hc_G[this.combT] * i.uncertainty * Number(i.name === j.name)
+                    * j.Hc_G[this.combT] * j.uncertainty;
+            }
+        }
+
+        let part2 = 0;
+        for (const i of this.components) {
+            part2 += i.value**2 * i.u_Hc_G**2;
+        }
+
+        return Math.sqrt(part1 + part2);
+    };
+    get u_Hc_N() {
+        let part1 = 0;
+        for (const i of this.components) {
+            for (const j of this.components) {
+                part1 += (i.Hc_G[this.combT] - consts.L[this.combT] / 2 * i.b) * i.uncertainty
+                    * Number(i.name === j.name)
+                    * (j.Hc_G[this.combT] - consts.L[this.combT] / 2 * j.b) * j.uncertainty;
+            }
+        }
+
+        let part2 = 0;
+        for (const i of this.components) {
+            part2 += i.value**2 * i.u_Hc_G**2;
+        }
+
+        let sum3 = 0;
+        for (const i of this.components) {
+            sum3 += i.value * i.b;
+        }
+        let part3 = (sum3 / 2)**2 * consts.u_L**2;
+
+        return Math.sqrt(part1 + part2 + part3);
     };
     get u_Hm_G() {
         let part1 = 0;
