@@ -32,7 +32,18 @@ export const inputData = restored || [
 
 console.log(inputData);
 
+function calculateMethaneValue() {
+    const methaneValue = 100 - inputData.slice(1).reduce((acc, component) => acc + component.value, 0);
+    console.log(methaneValue);
+    // inputData[0].value = Number(methaneValue.toFixed(5));
+    inputData[0].value = parseFloat(methaneValue.toFixed(5));
+
+    return inputData[0].value;
+}
+
 export function prepareMainInput() {
+    calculateMethaneValue();
+
     const tbody = inputData.reduce((html, component, index) => {
         return html +
             `<tr>
@@ -41,10 +52,21 @@ export function prepareMainInput() {
                     <input
                         type="text"
                         class="table-input"
-                        name="${component.name}"
+                        name="x-${component.name}"
                         oninput="handleInput(event, ${index})"
                         style="width: ${String(component.value).length + 0.5}ch"
                         value="${component.value}"
+                        ${index === 0 ? 'disabled' : ''}
+                    >
+                </td>
+                <td class="td-input">
+                    <input
+                        type="text"
+                        class="table-input"
+                        name="u-${component.name}"
+                        oninput="handleInput(event, ${index})"
+                        style="width: ${String(component.uncertainty).length + 0.5}ch"
+                        value="${component.uncertainty}"
                     >
                 </td>
             </tr>`;
@@ -53,13 +75,24 @@ export function prepareMainInput() {
     mainInput.innerHTML = tbody;
 }
 
+let methaneInput = null;
+
 window.handleInput = (e, index) => {
     console.log(e.target.name);
     console.log(e.target.value);
 
     e.target.style.width = (e.target.value.length + 0.5) + 'ch';
 
-    inputData[index].value = e.target.value;
+    if (e.target.name.startsWith('x-')) {
+        inputData[index].value = Number(e.target.value);
+    } else { // u-
+        inputData[index].uncertainty = Number(e.target.value);
+    }
+
+
+    if (!methaneInput) methaneInput = document.getElementsByName('x-methane')[0];
+    methaneInput.value = calculateMethaneValue();
+
     console.log(inputData);
     localStorage.setItem('inputData', JSON.stringify(inputData));
 

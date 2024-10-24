@@ -79,11 +79,6 @@ table {
     padding-inline: 0.1em;
 }
 
-#total-control {
-    text-align: right;
-    padding-inline: 0.1em;
-}
-
 .td-input {
     padding: 0, 0.4em;
 }
@@ -92,9 +87,11 @@ table {
     border: none;
     border-bottom: 1px solid gray;
     padding-inline: 0.1em;
-    /* width: 6em; */
-    /* width: auto;
-    min-width: 2em; */
+}
+
+.table-input:disabled {
+    border: none;
+    color: black;
 }
 
 .gas-composition {

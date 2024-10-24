@@ -18,8 +18,6 @@ const secondaryDewPointPressure = document.getElementById('dp-pressure');
 const secondaryDewPointDisplay = document.getElementById('secondary-dew-point');
 const correctedData = document.getElementById('corrected-data');
 
-const totalControl = document.getElementById('total-control');
-
 const dryReport = document.getElementById('dry-report');
 const mainInput = document.getElementById('main-input');
 
@@ -95,8 +93,6 @@ export default function calculateAndReport() {
     }));
     // const components = example3;
     console.log(components);
-    const total = components.reduce((acc, component) => acc + component.value, 0) * 100;
-    totalControl.innerText = `${total.toFixed(4)}`;
 
     const gasData = new GasData(components, combustionTSelect.value, meteringTSelect.value);
     console.log('dry:', gasData);
@@ -111,7 +107,7 @@ export default function calculateAndReport() {
     console.log(gasData.u_W_G);
     console.log(gasData.u_W_N);
 
-    // wetGasCase(components, gasData);
+    wetGasCase(components, gasData);
 }
 
 combustionTSelect.addEventListener('input', calculateAndReport);
