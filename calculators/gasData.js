@@ -216,6 +216,123 @@ class GasData {
             }
         }
 
+        let sum2 = 0;
+        for (const i of this.components) {
+            sum2 += i.value**2 * i.u_Hc_G**2;
+        }
+        const part2 = sum2 / this.Hc_N**2;
+
+        let sum3 = 0;
+        for (const i of this.components) {
+            sum3 = i.value**2 * i.u_s**2;
+        }
+        const part3 = 4 * this.s**2 * sum3 / this.Z**2;
+
+        const part4 = (consts.u_R / consts.R)**2;
+
+        let sum5 = 0;
+        for (const i of this.components) {
+            sum5 += i.value * i.b;
+        }
+
+        const part5 = (sum5 / 2 / this.Hc_N)**2 * consts.u_L**2;
+
+        return Math.sqrt(part1 + part2 + part3 + part4 + part5) * this.Hv_N;
+    };
+    get uM_matrixSum() {
+        if (this._cachedResults['uM_matrixSum']) return this._cachedResults['uM_matrixSum'];
+
+        let value = 0;
+        for (const i of this.components) {
+            for (const j of this.components) {
+                value += i.value * /* i.uM * j.uM * */ j.value * (
+                    i.a * j.a * consts.A.carbon.u**2 +
+                    i.b * j.b * consts.A.hydrogen.u**2 +
+                    i.c * j.c * consts.A.nitrogen.u**2 +
+                    i.d * j.d * consts.A.oxygen.u**2 +
+                    i.e * j.e * consts.A.sulfur.u**2
+                ) /* / i.uM / j.uM */
+            }
+        }
+
+        this._cachedResults['uM_matrixSum'] = value;
+        return value;
+    };
+    get u_DGHead() {
+        let part1 = 0;
+        for (const i of this.components) {
+            for (const j of this.components) {
+                part1 += (i.M / this.M + (2 * i.s[this.metT] * this.s / this.Z))
+                    * i.uncertainty * Number(i.name === j.name) * j.uncertainty
+                    * (j.M / this.M + (2 * j.s[this.metT] * this.s / this.Z));
+                // console.log((j.M / this.M + (2 * j.s[this.metT] * this.s / this.Z)))
+            }
+        }
+
+        const part2 = this.uM_matrixSum / this.M**2;
+
+        let sum3 = 0;
+        for (const i of this.components) {
+            sum3 = i.value**2 * i.u_s**2
+        }
+        const part3 = 4 * this.s**2 * sum3 / this.Z**2;
+
+        return part1 + part2 + part3;
+    };
+    get u_D() {
+        return Math.sqrt(this.u_DGHead + (consts.u_R / consts.R)**2) * this.D;
+    };
+    get u_G() {
+        return Math.sqrt(
+            this.u_DGHead
+            + (consts.u_M_air / consts.M_air)**2
+            + (consts.u_Z_air / consts.Z_air[this.metT])**2
+        ) * this.G;
+    };
+    get u_W_G() {
+        let part1 = 0;
+        for (const i of this.components) {
+            for (const j of this.components) {
+                part1 += ((i.Hc_G[this.combT] / this.Hc_G) + (i.s[this.metT] * this.s / this.Z) - (i.M / 2 / this.M))
+                    * i.uncertainty * Number(i.name === j.name) * j.uncertainty
+                    * ((j.Hc_G[this.combT] / this.Hc_G) + (j.s[this.metT] * this.s / this.Z) - (j.M / 2 / this.M));
+            }
+        }
+
+        let part2 = 0;
+        for (const i of this.components) {
+            part2 += i.value**2 * i.u_Hc_G**2;
+        }
+        part2 /= this.Hc_G**2;
+
+        let sum3 = 0;
+        for (const i of this.components) {
+            sum3 += i.value**2 * i.u_s**2;
+        }
+        const part3 = this.s**2 * sum3 / this.Z**2;
+
+        const part4 = this.uM_matrixSum / 4 / this.M**2;
+
+        const part5 = (consts.u_R / consts.R)**2;
+
+        const part6 = (consts.u_M_air / 2 / consts.M_air)**2;
+
+        const part7 = (consts.u_Z_air / 2 / consts.Z_air[this.metT])**2;
+
+        return Math.sqrt(part1 + part2 + part3 + part4 + part5 + part6 + part7) * this.W_G;
+    };
+    get u_W_N() {
+        let part1 = 0;
+        for (const i of this.components) {
+            for (const j of this.components) {
+                part1 += (((i.Hc_G[this.combT] - consts.L[this.combT] / 2 * i.b) / this.Hc_N)
+                        + (i.s[this.metT] * this.s / this.Z) - (i.M / 2 / this.M))
+                    * i.uncertainty * Number(i.name === j.name) * j.uncertainty
+                    * (((j.Hc_G[this.combT] - consts.L[this.combT] / 2 * j.b) / this.Hc_N)
+                       + (j.s[this.metT] * this.s / this.Z) - (j.M / 2 / this.M));
+            }
+        }
+
         let part2 = 0;
         for (const i of this.components) {
             part2 += i.value**2 * i.u_Hc_G**2;
@@ -224,34 +341,26 @@ class GasData {
 
         let sum3 = 0;
         for (const i of this.components) {
-            sum3 = i.value**2 * i.u_s**2
+            sum3 += i.value**2 * i.u_s**2;
         }
-        const part3 = 4 * this.s**2 * sum3 / this.Z**2;
+        const part3 = this.s**2 * sum3 / this.Z**2;
 
-        const part4 = (consts.u_R / consts.R)**2;
+        const part4 = this.uM_matrixSum / 4 / this.M**2;
 
-        let sum5 = 0;
+        const part5 = (consts.u_R / consts.R)**2;
+
+        const part6 = (consts.u_M_air / 2 / consts.M_air)**2;
+
+        const part7 = (consts.u_Z_air / 2 / consts.Z_air[this.metT])**2;
+
+        let sum8 = 0;
         for (const i of this.components) {
-            sum5 += i.value * i.b
+            sum8 += i.value * i.b;
         }
+        const part8 = (sum8 / 2 / this.Hc_N)**2 * consts.u_L**2;
 
-        const part5 = (sum5 / 2 / this.Hc_N)**2 * consts.u_L**2
-
-        return Math.sqrt(part1 + part2 + part3 + part4 + part5) * this.Hv_N;
+        return Math.sqrt(part1 + part2 + part3 + part4 + part5 + part6 + part7 + part8) * this.W_N;
     };
-    get uM_matrix() {
-        if (this._cachedResults['uM_matrix']) return this._cachedResults['uM_matrix'];
-
-        let value = 0;
-        for (const i of this.components) {
-            for (const j of this.components) {
-                value += 0; //here we go!
-            }
-        }
-
-        this._cachedResults['uM_matrix'] = value;
-        return value;
-    }
 };
 
 export default GasData;
